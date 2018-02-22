@@ -1,11 +1,9 @@
 package com.snap.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -27,20 +25,6 @@ public class QueueController
     private RabbitTemplate rabbitTemplate;
     private String jsonResponse;
 
-    @GET
-    public Response getMessageRabbit() throws IOException
-    {
-        try
-        {
-            return Response.status( HttpServletResponse.SC_OK ).entity( jsonResponse ).build();
-        }
-        catch ( Exception e )
-        {
-
-            return Response.status( HttpServletResponse.SC_INTERNAL_SERVER_ERROR ).entity( jsonResponse ).build();
-        }
-    }
-    
     @POST
     @Path("{message}")
     public Response createMessageRabbit(@PathParam("message") String message) throws IOException

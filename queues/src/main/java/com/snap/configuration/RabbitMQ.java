@@ -68,21 +68,21 @@ public class RabbitMQ
         return BindingBuilder.bind( queue ).to( exchange ).with( ROUTING_KEY ).and( args );
     }
 
-//    @Bean
-//    public SimpleMessageListenerContainer container( ConnectionFactory connectionFactory,
-//            MessageListenerAdapter listenerAdapter )
-//    {
-//        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-//        container.setConnectionFactory( connectionFactory );
-//        container.setQueueNames( QUEUE_NAME );
-//      //  container.setMessageListener( listenerAdapter );
-//        return container;
-//    }
+    @Bean
+    public SimpleMessageListenerContainer container( ConnectionFactory connectionFactory,
+            MessageListenerAdapter listenerAdapter )
+    {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory( connectionFactory );
+        container.setQueueNames( QUEUE_NAME );
+        container.setMessageListener( listenerAdapter );
+        return container;
+    }
     
-//    @Bean
-//    public MessageListenerAdapter listenerAdapter(Receiver receiver) {
-//        return new MessageListenerAdapter(receiver, "receiveMessage");
-//    }
+    @Bean
+    public MessageListenerAdapter listenerAdapter(Receiver receiver) {
+        return new MessageListenerAdapter(receiver, Receiver.RECEIVE_METHOD_NAME);
+    }
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
