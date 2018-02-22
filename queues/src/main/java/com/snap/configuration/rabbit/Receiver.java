@@ -1,4 +1,4 @@
-package com.snap.configuration;
+package com.snap.configuration.rabbit;
 
 import org.springframework.stereotype.Component;
 
